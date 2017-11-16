@@ -1,0 +1,59 @@
+// Base character class
+Character()
+	- string name
+	- int health
+	- int maxHealth
+	- int energy
+	- int maxEnergy
+	- int strength
+	- int defense
+	- Weapon equippedWeapon
+	+ string GetName
+	+ string GetName()
+    + int GetHealth()
+    + int GetEnergy()
+    + int GetStrength()
+    + int GetDefense()
+    + Weapon GetEquippedWeapon()
+    + void Print()
+    + void SetName(string name)
+    + void SetHealth(int healthValue)
+    + void IncreaseHealth(int lifeGained)
+    + void DecreaseHealth(int damageTaken)
+    + void SetEnergy(int energyValue)
+    + void SetStrength(int strengthValue)
+    + void SetDefense(int defenseValue)
+    + void UseConsumable(Consumable *itemToUse)
+    + void EquipWeapon(Weapon *weaponToEquip)
+    + void Attack(Character *target)
+
+// Base item class
+Item()
+	- string Name
+	- int itemLevel
+	+ string GetName()
+	+ int GetItemLevel()
+	+ void Print()
+	+ void SetName(string name)
+	+ void SetItemLevel(int itemLevel)
+
+	Weapon(Item)
+		- int weaponDamage
+		+ int GetWeaponDamage
+		+ void SetWeaponDamage
+		+ void Print()
+
+		Sword(Weapon)
+		Dagger(Weapon)
+
+	Consumable(Item)
+		- int quantity
+		+ int GetQuantity();
+		+ void SetQuantity(int qty)
+		+ void Consume(Character *target)
+
+		Potion(Consumable)
+
+			HealthPotion(Potion)
+			StrengthPotion(Potion)
+			EnergyPotion(Potion)
