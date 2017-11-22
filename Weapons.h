@@ -1,13 +1,16 @@
+/*******************************************************************************
+ *                              Healing spells
+ *******************************************************************************/
 #ifndef GROUPPROJECT_WEAPON_H
 #define GROUPPROJECT_WEAPON_H
 
 #include "Item.h"
 
 class Weapon : public Item {
-protected:
-    int weaponDamage;   // Player's damage is increased by this amount
     // TODO implement weapon durability
     // TODO implement weapon damage based on item level
+protected:
+    int weaponDamage;   // Player's damage is increased by this amount
 public:
     // Constructors
     Weapon();

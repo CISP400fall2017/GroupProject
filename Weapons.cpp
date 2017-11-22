@@ -1,5 +1,9 @@
+/*******************************************************************************
+ *              Class definitions for all Weapon types
+*******************************************************************************/
+
 #include <iostream>
-#include "Weapon.h"
+#include "Weapons.h"
 using namespace std;
 
 /*******************************************************************************
@@ -31,7 +35,6 @@ void Weapon::SetWeaponDamage(int weaponDamage) {
 *******************************************************************************/
 Sword::Sword() {
     this->name = "Sword";
-    this->itemLevel = 1;
     this->weaponDamage = 15;
 }
 Sword::Sword(string swordName, int itemLevel) {

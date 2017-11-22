@@ -1,3 +1,7 @@
+/*******************************************************************************
+ *                      Character class definition
+ *******************************************************************************/
+
 #include <iostream>
 #include <iomanip>
 #include "Character.h"
@@ -7,6 +11,7 @@ using namespace std;
 *   Characters: Constructors                                                    *
 *********************************************************************************/
 Character::Character() {
+    this->isAlive = true;
     this->name = "";
     this->maxHealth = 100;
     this->health = this->maxHealth;
@@ -16,6 +21,7 @@ Character::Character() {
     this->defense = 0;
 }
 Character::Character(string name, int maxHealth) {
+    this->isAlive = true;
     this->name = name;
     this->maxHealth = maxHealth;
     this->health = this->maxHealth;
@@ -63,8 +69,9 @@ void Character::SetHealth(int healthValue) {
     this->health = healthValue;
 }
 void Character::IncreaseHealth(int lifeGained) {
-
-    cout << this->name << " is healed for ";
+    // Increase the character's health.
+    cout << this->name << " gains ";
+    // Health cannot exceed maxHealth
     if ((this->health + lifeGained) < this->maxHealth) {
         this->health += lifeGained;
         cout << lifeGained;
@@ -72,16 +79,18 @@ void Character::IncreaseHealth(int lifeGained) {
         cout << this->maxHealth - this->health;
         this->health = this->maxHealth;
     }
-    cout << "!" << endl;
+    cout << " health!" << endl;
 }
 void Character::DecreaseHealth(int damageTaken) {
-    // Damage taken is reduced by defense stat
-    int healthLost = damageTaken - this->defense;
-    // Reduce health
-    if ((this->health - healthLost) > 0) {
-        this->health -= healthLost;
+
+    cout << this->name << " takes " << damageTaken << " damage!" << endl;
+
+    if ((this->health - damageTaken) > 0) {
+        this->health -= damageTaken;
     } else {
         this->health = 0;
+        this->isAlive = false;
+        cout << this->name << " has died." << endl;
     }
 }
 void Character::SetEnergy(int energyValue) {
@@ -103,21 +112,32 @@ void Character::EquipWeapon(Weapon *weaponToEquip) {
     this->equippedWeapon = *weaponToEquip;
 }
 void Character::Attack(Character *target) {
+    // Deal damage that is mitigated by the target's defense stat
     int damageDealt = (this->strength + this->equippedWeapon.GetWeaponDamage()) - target->defense;
 
-    cout << this->name << " attacks " << target->GetName();
+   cout << this->name << " attacks " << target->GetName() << "!" << endl;
 
     if (damageDealt > 0) {  // Target takes damage
-        cout << " for " << damageDealt << " damage!" << endl;
-        if (target->GetHealth() > 0) {
-            target->DecreaseHealth(damageDealt);
-        } else { // Target is already dead
-            cout << "Overkill!" << endl;
-        }
+        target->DecreaseHealth(damageDealt);
     }
     else { // Target defense is too high, no damage taken
         cout << "!" << endl << "The attack has no effect!" << endl;
     }
 }
-
+void Character::CastSpell(Spell *spell, Character *target) {
+    // Cast a spell at a target
+    if (this->energy - spell->GetTotalEnergyCost() >= 0) {
+        // Player has enough energy to cast the spell
+        cout << this->name << " casts " << spell->GetSpellName();
+        cout << " (Level " << spell->GetSpellLevel() << ") at ";
+        cout << target->GetName() << "!" << endl;
+        spell->Cast(target);
+        this->energy -= spell->GetTotalEnergyCost();
+    }
+    else {
+        // Player does not have enough energy to cast the spell
+        cout << this->name << " does not have enough energy to cast ";
+        cout << spell->GetSpellName() << "." << endl;
+    }
+}
 

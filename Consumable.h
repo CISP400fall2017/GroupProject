@@ -1,3 +1,6 @@
+/*******************************************************************************
+ *              Base class for all consumable items
+ *******************************************************************************/
 #ifndef GROUPPROJECT_CONSUMABLE_H
 #define GROUPPROJECT_CONSUMABLE_H
 
@@ -13,6 +16,5 @@ public:
     void SetQuantity(int quantity);
     virtual void Consume(Character *target) = 0;
 };
-
 
 #endif //GROUPPROJECT_CONSUMABLE_H
