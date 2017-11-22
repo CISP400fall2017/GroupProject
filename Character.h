@@ -35,6 +35,7 @@ public:
     int GetDefense() const;
     Weapon GetEquippedWeapon() const;
     void Print() const;
+    bool IsAlive() const;
     // Setters
     void SetName(string name);
     void SetHealth(int healthValue);

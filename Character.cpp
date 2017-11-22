@@ -102,6 +102,10 @@ void Character::SetStrength(int strengthValue) {
 void Character::SetDefense(int defenseValue) {
     this->defense = defenseValue;
 }
+bool Character::IsAlive() const {
+    // Return true if the Character is alive
+    return this->isAlive;
+}
 /********************************************************************************
 *   Characters: Interaction Methods                                             *
 *********************************************************************************/
