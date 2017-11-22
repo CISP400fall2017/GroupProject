@@ -6,7 +6,7 @@ using namespace std;
 Consumable::Consumable() {}
 
 int Consumable::GetQuantity() const {
-    return quantity;
+    return this->quantity;
 }
 void Consumable::SetQuantity(int quantity) {
     this->quantity = quantity;
