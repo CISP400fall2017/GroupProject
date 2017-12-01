@@ -56,7 +56,6 @@ void Combat(Character player1, Character enemy1, MagicMissile missile, HealthPot
 	cout << "(1) Attack		(2) Cast Spell" << endl;
 	cout << "(3) Equip Weapon	(4) Use Consumable" << endl;
 
-	cin.ignore();
 	cin >> playerChoice;	// Player inputs Action here
 
 	while (playerChoice < 1 || playerChoice > 4) {	//Used for Player input Validations
