@@ -113,7 +113,8 @@ void Character::UseConsumable(Consumable *itemToUse) {
     itemToUse->Consume(this);
 }
 void Character::EquipWeapon(Weapon *weaponToEquip) {
-    this->equippedWeapon = *weaponToEquip;
+	this->equippedWeapon = *weaponToEquip;
+		cout << this->name << " equipped " << equippedWeapon.GetName();
 }
 void Character::Attack(Character *target) {
     // Deal damage that is mitigated by the target's defense stat
@@ -144,4 +145,3 @@ void Character::CastSpell(Spell *spell, Character *target) {
         cout << spell->GetSpellName() << "." << endl;
     }
 }
-
