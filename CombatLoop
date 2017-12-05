@@ -64,7 +64,8 @@ void Combat(Character &player1, Character enemy1, MagicMissile missile, HealthPo
 		cin.ignore();
 		cin >> playerChoice;
 	};
-
+	
+	cout << endl;
 
 	switch (playerChoice)	//Switch for Player Menu
 	{
