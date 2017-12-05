@@ -1,9 +1,8 @@
 #include <iostream>
 #include "Character.h"
 #include "Potion.h"
+#include "CombatLoop.cpp"
 using namespace std;
-
-extern void Combat(Character player1, Character enemy1, MagicMissile missile, HealthPotion pot1, Sword sword1);
 
 int main() {
 
