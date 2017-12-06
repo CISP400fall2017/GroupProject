@@ -18,6 +18,7 @@ int main(){
 	while (input != 'q'){//ends the main game loop when the input is Q
 		input = 'c'; //ensures the main part of the town loop always starts correctly
 		while (input != 'a' && input != 'b' && input != 'q'){ //loops if an invalid input is selected
+            cout << endl;
 			cout << "You find yourself in the safe, quaint town" << endl;
 			cout << "a: Rest in the tavern to heal. costs 10 gold. Current health is " << player1.GetHealth() << endl;
 			cout << "b: Go exploring in the fields" << endl;
@@ -44,7 +45,7 @@ int main(){
 			case 'b' : //if player chooses 'b', starts the field loop
 				input = 'a'; //makes sure the field loop doesn't end right away
 				while (input != 'b' && input != 'q'){ //stays in the field until "return to town" or "quit game" is selected
-					
+					cout << endl;
 					cout << "The fields stretch on endlessly, with the safety of the town barely visible in the distance behind you" << endl;
 					cout << "You currently have " << player1.GetHealth() << " health" << endl;
 					cout << "a: Wander in the fields" << endl;
