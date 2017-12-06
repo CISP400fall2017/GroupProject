@@ -122,7 +122,8 @@ void Combat(Character &player1, MagicMissile missile, HealthPotion pot1, Sword s
 		break;
 	}
 
-		} while (player1.GetHealth() > 0 && enemy1.GetHealth() > 0);
+		}
+    while (player1.GetHealth() >= 0 && enemy1.GetHealth() >= 0);
 
 	if (player1.GetHealth() <= 0) {
 		cout << "You Died" << endl;
@@ -131,7 +132,6 @@ void Combat(Character &player1, MagicMissile missile, HealthPotion pot1, Sword s
 		cout << "Victory" << endl;
 	}
 
-	player1.Print();
 	return;
 }
 
