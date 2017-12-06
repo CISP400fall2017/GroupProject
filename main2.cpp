@@ -26,9 +26,11 @@ int main(){
 				player1.IncreaseHealth(100);
 				break;
 			case 'b' : //if player chooses 'b', starts the field loop
+				input = 'a'; //makes sure the field loop doesn't end right away
 				while (input != 'b' && input != 'q'){ //stays in the field until "return to town" or "quit game" is selected
 					
 					cout << "The fields stretch on endlessly, with the safety of the town barely visible in the distance behind you" << endl;
+					cout << "You currently have " << player1.GetHealth() << " health" << endl;
 					cout << "a: Wander in the fields" << endl;
 					cout << "b: Return to the safety of town" << endl;
 					cout << "q: quit game" << endl;
