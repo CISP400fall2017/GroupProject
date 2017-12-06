@@ -21,7 +21,7 @@ randomized action by the enemy.
 
 using namespace std;
 
-void Combat(Character &player1, Character enemy1, MagicMissile missile, HealthPotion pot1, Sword sword1) {		//Player is now passed by reference to effects of batte permanent
+void Combat(Character &player1, MagicMissile missile, HealthPotion pot1, Sword sword1) {		//Player is now passed by reference to effects of batte permanent
 
 	/*=============================================
 	Variables
@@ -30,6 +30,7 @@ void Combat(Character &player1, Character enemy1, MagicMissile missile, HealthPo
 	int turn = 0;		// Used for the turn counter
 	int enemyChoice = 0;	// Random enemy choice
 	int playerChoice = 0;	// Should be 1 - 4 for action menu
+	Character enemy1;
 
 	srand(time(0));		// Used to seed rand
 
@@ -54,7 +55,7 @@ void Combat(Character &player1, Character enemy1, MagicMissile missile, HealthPo
 	cout << "Choose an action." << endl;
 
 	cout << "(1) Attack		(2) Cast Spell" << endl;
-	cout << "(3) Equip Weapon	(4) Use Consumable" << endl;
+	cout << "(3) Equip Weapon	(4) Use Potion" << endl;
 
 	cin >> playerChoice;	// Player inputs Action here
 

@@ -12,13 +12,14 @@ using namespace std;
 *********************************************************************************/
 Character::Character() {
     this->isAlive = true;
-    this->name = "";
+    this->name = "Unknown Entity";
     this->maxHealth = 100;
     this->health = this->maxHealth;
     this->maxEnergy = 100;
     this->energy = this->maxEnergy;
     this->strength = 10;
     this->defense = 0;
+    this->goldCoins = 0;
 }
 Character::Character(string name, int maxHealth) {
     this->isAlive = true;
@@ -29,6 +30,7 @@ Character::Character(string name, int maxHealth) {
     this->energy = this->maxEnergy;
     this->strength = 10;
     this->defense = 0;
+    this->goldCoins = 0;
 }
 /********************************************************************************
 *   Characters: Accessors                                                      *
@@ -50,6 +52,9 @@ int Character::GetDefense() const {
 }
 Weapon Character::GetEquippedWeapon() const {
     return this->equippedWeapon;
+}
+int Character::GetGoldAmount() const {
+    return this->goldCoins;
 }
 void Character::Print() const {
     cout << "====== " << this->name << " STATS ======" << endl;
@@ -101,6 +106,21 @@ void Character::SetStrength(int strengthValue) {
 }
 void Character::SetDefense(int defenseValue) {
     this->defense = defenseValue;
+}
+void Character::IncreaseGold(int increaseBy) {
+    if (increaseBy > 0) { // Only accept positive amounts
+        cout << this->name << " gains " << increaseBy << " gold." << endl;
+        this->goldCoins += increaseBy;
+    }
+}
+void Character::DecreaseGold(int decreaseBy) {
+    if (this->goldCoins - decreaseBy >= 0) {
+        this->goldCoins -= decreaseBy;
+    }
+    else { // Character does not have enough gold
+        cout << this->name << " does not have enough gold." << endl;
+        return;
+    }
 }
 bool Character::IsAlive() const {
     // Return true if the Character is alive

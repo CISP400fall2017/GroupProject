@@ -22,6 +22,7 @@ private:
     int maxEnergy; // Maximum energy
     int strength;  // Damage dealt is increased by this amount
     int defense;   // Damage received is increased by this amount
+    int goldCoins; // Gold coins held by the player
     Weapon equippedWeapon;  // Currently equipped weapon
 public:
     // Constructors
@@ -33,6 +34,7 @@ public:
     int GetEnergy() const;
     int GetStrength() const;
     int GetDefense() const;
+    int GetGoldAmount() const;
     Weapon GetEquippedWeapon() const;
     void Print() const;
     bool IsAlive() const;
@@ -44,6 +46,8 @@ public:
     void SetEnergy(int energyValue);
     void SetStrength(int strengthValue);
     void SetDefense(int defenseValue);
+    void IncreaseGold(int increaseBy);
+    void DecreaseGold(int decreaseBy);
     // Interaction methods
     void UseConsumable(Consumable *itemToUse);
     void EquipWeapon(Weapon *weaponToEquip);
