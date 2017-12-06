@@ -101,6 +101,22 @@ void Character::DecreaseHealth(int damageTaken) {
 void Character::SetEnergy(int energyValue) {
     this->energy = energyValue;
 }
+void Character::IncreaseEnergy(int increaseBy) {
+    if (this->energy + increaseBy <= this->maxEnergy) {
+        this->energy += increaseBy;
+    }
+    else {
+        this->energy = this->maxEnergy;
+    }
+}
+void Character::DecreaseEnergy(int decreaseBy) {
+    if (this->energy - decreaseBy >= 0) {
+        this->energy -= decreaseBy;
+    }
+    else {
+        return;
+    }
+}
 void Character::SetStrength(int strengthValue) {
     this->strength = strengthValue;
 }

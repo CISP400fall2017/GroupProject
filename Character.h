@@ -44,6 +44,8 @@ public:
     void IncreaseHealth(int lifeGained);
     void DecreaseHealth(int damageTaken);
     void SetEnergy(int energyValue);
+    void IncreaseEnergy(int increaseBy);
+    void DecreaseEnergy(int decreaseBy);
     void SetStrength(int strengthValue);
     void SetDefense(int defenseValue);
     void IncreaseGold(int increaseBy);

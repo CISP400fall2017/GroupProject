@@ -1,5 +1,4 @@
 #include <iostream>
-#include "Character.h"
 #include "Potion.h"
 #include "CombatLoop.cpp"
 using namespace std;
@@ -8,7 +7,6 @@ int main(){
 	char input = 'x';
 
     Character player1("Mad Max", 100);      // Create a character
-    Character enemy1("The Toecutter", 100); // Create a character
     Sword sword1("Master Sword", 3);        // Create a Sword (weapon)
     HealthPotion pot1(2);                   // Create a HealthPotion
     StrengthPotion pot2(3);                 // Create a StrengthPotion

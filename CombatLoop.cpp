@@ -10,13 +10,8 @@ randomized action by the enemy.
 #define GROUPPROJECT_COMBAT_H
 
 #include <iostream>
-#include <string>
-#include <cstdlib>
 #include <ctime>
 #include "Character.h"
-#include "Consumable.h"
-#include "Spells.h"
-#include "Item.h"
 #include "Potion.h"
 
 using namespace std;
@@ -30,100 +25,103 @@ void Combat(Character &player1, MagicMissile missile, HealthPotion pot1, Sword s
 	int turn = 0;		// Used for the turn counter
 	int enemyChoice = 0;	// Random enemy choice
 	int playerChoice = 0;	// Should be 1 - 4 for action menu
-	Character enemy1;
+    Character enemy1("Bandit", 50);
 
-	srand(time(0));		// Used to seed rand
+    srand(time(0));		// Used to seed rand
 
-
-	cout << player1.GetName() << " enters the battle!" << endl;
+    cout << player1.GetName() << " enters the battle!" << endl;
 	cout << enemy1.GetName() << " enters the battle!" << endl;
 	/*=========================================================
 	Start of The Combat Loop
 	============================================================*/
-		do {
+    do {
 
-	turn++;					//Turn counter and display
-	cout << "TURN " << turn << endl;
+        // Regenerate player's life and energy slightly
+        player1.IncreaseEnergy(10);
+        player1.IncreaseHealth(10);
 
-	player1.Print();    // Display player1 attributes
-	enemy1.Print();     // Display enemy1 attributes
+        turn++;					//Turn counter and display
+        cout << "TURN " << turn << endl;
 
-	cout << endl;
-	/*============================================================
-	Player Action Menu
-	==============================================================*/
-	cout << "Choose an action." << endl;
+        player1.Print();    // Display player1 attributes
+        enemy1.Print();     // Display enemy1 attributes
 
-	cout << "(1) Attack		(2) Cast Spell" << endl;
-	cout << "(3) Equip Weapon	(4) Use Potion" << endl;
+        cout << endl;
+        /*============================================================
+        Player Action Menu
+        ==============================================================*/
+        cout << "Choose an action." << endl;
 
-	cin >> playerChoice;	// Player inputs Action here
+        cout << "(1) Attack		(2) Cast Spell" << endl;
+        cout << "(3) Equip Weapon	(4) Use Potion" << endl;
 
-	while (playerChoice < 1 || playerChoice > 4) {	//Used for Player input Validations
-		cout << "Choose a number between 1 and 4" << endl;
-		
-		cin.ignore();
-		cin >> playerChoice;
-	};
-	
-	cout << endl;
+        cin >> playerChoice;	// Player inputs Action here
 
-	switch (playerChoice)	//Switch for Player Menu
-	{
-	case 1:				//Attack
-		player1.Attack(&enemy1);
-		cout << endl;
-		break;
-	case 2:				//Cast Spell
-		player1.CastSpell(&missile, &enemy1);	//Use constructor from main for now
-		cout << endl;
-		break;
-	case 3:
-		player1.EquipWeapon(&sword1);			//Use constructor from main for now
-		cout << endl;
-		break;
-	case 4:
-		player1.UseConsumable(&pot1);			//Use constructor from main for now
-		cout << endl;
-		break;
-	default:
-		player1.Attack(&enemy1);
-		cout << endl;
-		break;
-	}
+        while (playerChoice < 1 || playerChoice > 4) {	//Used for Player input Validations
+            cout << "Choose a number between 1 and 4" << endl;
 
-	/*=======================================================
-	Enemy Action
-	=========================================================*/
+            cin.ignore();
+            cin >> playerChoice;
+        };
 
-	enemyChoice = rand() % 4 + 1;
+        cout << endl;
 
-	switch (enemyChoice)	//Switch for Player Menu
-	{
-	case 1:				//Attack
-		enemy1.Attack(&player1);
-		cout << endl;
-		break;
-	case 2:				//Cast Spell
-		enemy1.CastSpell(&missile, &player1);	//Use constructor from main for now
-		cout << endl;
-		break;
-	case 3:
-		enemy1.EquipWeapon(&sword1);			//Use constructor from main for now
-		cout << endl;
-		break;
-	case 4:
-		enemy1.UseConsumable(&pot1);			//Use constructor from main for now
-		cout << endl;
-		break;
-	default:
-		enemy1.Attack(&player1);
-		cout << endl;
-		break;
-	}
+        switch (playerChoice)	//Switch for Player Menu
+        {
+        case 1:				//Attack
+            player1.Attack(&enemy1);
+            cout << endl;
+            break;
+        case 2:				//Cast Spell
+            player1.CastSpell(&missile, &enemy1);	//Use constructor from main for now
+            cout << endl;
+            break;
+        case 3:
+            player1.EquipWeapon(&sword1);			//Use constructor from main for now
+            cout << endl;
+            break;
+        case 4:
+            player1.UseConsumable(&pot1);			//Use constructor from main for now
+            cout << endl;
+            break;
+        default:
+            player1.Attack(&enemy1);
+            cout << endl;
+            break;
+        }
 
+        /*=======================================================
+        Enemy Action
+        =========================================================*/
+
+        enemyChoice = rand() % 4 + 1;
+
+        switch (enemyChoice)	//Switch for Player Menu
+        {
+        case 1:				//Attack
+            enemy1.Attack(&player1);
+            cout << endl;
+            break;
+        case 2:				//Cast Spell
+            enemy1.CastSpell(&missile, &player1);	//Use constructor from main for now
+            cout << endl;
+            break;
+        case 3:
+            enemy1.EquipWeapon(&sword1);			//Use constructor from main for now
+            cout << endl;
+            break;
+        case 4:
+            enemy1.UseConsumable(&pot1);			//Use constructor from main for now
+            cout << endl;
+            break;
+        default:
+            enemy1.Attack(&player1);
+            cout << endl;
+            break;
+        }
 		}
-    while (player1.GetHealth() >= 0 && enemy1.GetHealth() >= 0);
+
+    while (player1.IsAlive() && enemy1.IsAlive());
 
 	if (player1.GetHealth() <= 0) {
 		cout << "You Died" << endl;
